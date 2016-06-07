@@ -46,34 +46,23 @@ attr_reader :id
   # but it should allow you to search for a contact using attributes other than id
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
+
   def self.find_by(attribute, value)
-
-
-
-    # puts "How would you like to search? (first name / last name / email / note)"
-    # input1 = gets.chomp
-    # if input1.include?("first" || "First")
-    #   puts "What is the first name?"
-    #   input2 = gets.chomp.capitalize!
-    #   ## Help! ##
-    # elsif input1.include?("last" || "Last")
-    #   puts "What is the last name?"
-    #   input2 = gets.chomp.capitalize!
-    #   ## Help! ##
-    # elsif input1.include?("email")
-    #   puts "What is the email?"
-    #   input2 = gets.chomp.downcase!
-    #   ## Help! ##
-    # elsif input1.include?("note")
-    #   puts "What is the note?"
-    #   input2 = gets.chomp
-    #   ## Help! ##
-    # end
+    if attribute == "first_name"
+      @@contacts.find { |contact| contact.first_name == value}
+    elsif attribute == "last_name"
+      @@contacts.find { |contact| contact.last_name == value}
+    elsif attribute == "email"
+      @@contacts.find { |contact| contact.email == value}
+    elsif attribute == "note"
+      @@contacts.find { |contact| contact.note == value}
+    end
   end
+
 
   # This method should delete all of the contacts
   def self.delete_all
-
+    @@contacts.slice!(0..@@contacts.length)
   end
 
   def full_name
