@@ -25,7 +25,7 @@ attr_reader :id
 
   # This method should return all of the existing contacts
   def self.all
-    @@contacts
+    @@contacts.each { |a| puts a }
   end
 
   # This method should accept an id as an argument
@@ -77,9 +77,14 @@ attr_reader :id
     "#{@first_name} #{@last_name}"
   end
 
+  def self.delete(id)
+    @@contacts.reject! { |contact| contact.id == id }
+  end
+
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
-  def self.delete(attribute, value)
+
+  def self.delete_by(attribute, value)
     if attribute == "first_name"
       @@contacts.reject! { |contact| contact.first_name == value }
     elsif attribute == "last_name"
@@ -88,9 +93,16 @@ attr_reader :id
       @@contacts.reject! { |contact| contact.email == value }
     elsif attribute == "note"
       @@contacts.reject! { |contact| contact.note == value }
+    elsif attribute == "id"
+      @@contacts.reject! { |contact| contact.id == value}
     end
   end
 
   # Feel free to add other methods here, if you need them.
 
 end
+
+andrew = Contact.create("Andrew", "Klar", "andrewklar@hotmail.com", "Jehovah\'s Witness")
+john_smith1 = Contact.create("John", "Smith", "johnsmith@aol.com", "not a real person")
+john_smith2 = Contact.create("John", "Smith", "johnsmith@hotmail.com", "also not a real person")
+john_smith3 = Contact.create("John", "Smith", "johnsmith@gmail.com", "possibly a real person")
