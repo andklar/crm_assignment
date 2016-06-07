@@ -38,8 +38,16 @@ attr_reader :id
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def update
-
+  def update(attribute, value)
+    if attribute == "first_name"
+      @first_name = value
+    elsif attribute == "last_name"
+      @last_name = value
+    elsif attribute == "email"
+      @email = value
+    elsif attribute == "note"
+      @note = value
+    end
   end
 
   # This method should work similarly to the find method above
@@ -71,8 +79,16 @@ attr_reader :id
 
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
-  def delete(contact)
-    @@contacts.delete(contact)
+  def self.delete(attribute, value)
+    if attribute == "first_name"
+      @@contacts.reject! { |contact| contact.first_name == value }
+    elsif attribute == "last_name"
+      @@contacts.reject! { |contact| contact.last_name == value }
+    elsif attribute == "email"
+      @@contacts.reject! { |contact| contact.email == value }
+    elsif attribute == "note"
+      @@contacts.reject! { |contact| contact.note == value }
+    end
   end
 
   # Feel free to add other methods here, if you need them.
