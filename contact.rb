@@ -77,8 +77,8 @@ attr_reader :id
     "#{@first_name} #{@last_name}"
   end
 
-  def self.delete(id)
-    @@contacts.reject! { |contact| contact.id == id }
+  def delete
+    @@contacts.delete(self)
   end
 
   # This method should delete the contact
